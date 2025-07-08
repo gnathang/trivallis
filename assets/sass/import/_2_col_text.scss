@@ -1,0 +1,16 @@
+.two-text-col{
+    .auto_content{
+        @include respond-to('md'){
+            column-gap: 4%;
+            &.one_col{
+                column-count: 1;
+            }
+            &.two_col{
+                column-count: 2;
+            }
+            &.three_col{
+                column-count: 3;
+            }            
+        }
+    }
+}

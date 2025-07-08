@@ -1,0 +1,29 @@
+.section_text {
+    background-color: $white !important;
+    .text_wrap {
+        // text-align: center;
+        @include respond-to('lg') {
+            width: 50%;
+            // margin: 0 auto;
+        }
+        a {
+            color: $blue;
+            font-weight: 600;
+            text-decoration: underline;
+            &:hover {
+                text-decoration: none;
+            }
+            &.btn_blue, &.btn_purple {
+                color: $white;
+                text-decoration: none;
+            }
+        }
+    }
+    .buttons_wrap {
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 10px;
+        justify-content: center;
+        padding-bottom: 60px;
+    }
+}

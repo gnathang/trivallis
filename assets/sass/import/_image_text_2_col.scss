@@ -1,0 +1,64 @@
+.image-text-col{
+    position: relative;
+    .content{
+        display: block;
+        text-align: center;
+        @include respond-to(md){
+            text-align: left;
+            display:flex;
+            align-items: center;
+        }
+        h1,h2,h3 {
+            color: $blue;
+        }
+        a {
+            color: $blue;
+            font-weight: 600;
+            text-decoration: underline;
+            &:hover {
+                text-decoration: none;
+            }
+            &.btn_blue, &.btn_purple {
+                color: $white;
+                text-decoration: none;
+            }
+        }
+    }
+    .image{
+        @include respond-to(sm){
+            margin-bottom: 20px;
+        }
+        img {
+            @include border_radius_small;
+        }
+    }
+    .wrap_image_left, .wrap_image_right {
+        @include respond-to('lg') {
+            width: 80%;
+            margin: 0 auto;
+        }
+    }
+
+    .wrap_image_left{
+        .content{     
+            .text{
+                h1,h2,h3,h4,h5,h6,p{
+                    margin-left: 8%;
+                }
+            }       
+        }        
+    }
+    .wrap_image_right{
+        .content{
+            flex-direction: row-reverse;
+            .text{
+                h1,h2,h3,h4,h5,h6,p{
+                    margin-right: 8%;
+                }
+            }
+            .image{
+                margin-right:0;
+            }
+        }        
+    }
+}

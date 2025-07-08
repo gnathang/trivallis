@@ -1,0 +1,24 @@
+
+.section_multiple_links {
+
+    .link_group_wrap {
+        border: solid 1px $lightgrey;
+        @include border_radius_small;
+        margin-bottom: 20px;
+        padding: 18px;
+        @include respond-to('md') {
+            padding: 40px;
+            margin-bottom: 60px;
+        }
+        &:last-child {
+            margin-bottom: 0px;
+        }
+        .link_group_title_wrap {
+            @include link_list_header;
+        }
+    
+        .link_list {
+            @include link_list
+        }
+    }
+}

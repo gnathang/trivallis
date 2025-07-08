@@ -1,0 +1,24 @@
+
+.section_signposts {
+    @include respond-to('lg') {
+        padding-top: 0px;
+        padding-bottom: 120px;
+    }
+    .container {
+
+        .title_wrap {
+            @include respond-to('lg') {
+                border-top: solid 1px #F0F0F0;
+                padding-top: 30px;
+            }
+        }
+        .signposts_wrap {
+            display: grid;
+            gap: 8px;
+            @media(min-width: 800px) {
+                grid-template-columns: 1fr 1fr 1fr;
+                gap: 10px;
+            }
+        }
+    }
+}

@@ -1,0 +1,88 @@
+.section_wayfinder {
+
+    .intro_text {
+        margin-bottom: 80px;
+        h3 {
+            color: $blue;
+        }
+        @include respond-to('sm') {
+            margin-bottom: 80px;
+        }
+        @include respond-to('lg') {
+            max-width: 50%;
+        }
+    }
+   
+    .subtitle {
+        margin-bottom: 20px;
+        @include respond-to('lg') {
+            border-top: solid 1px #F0F0F0;
+            padding-top: 10px;
+        }
+    }
+
+
+    .wayfinder_grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        align-items: stretch;
+        justify-content: center;
+        @include respond-to('md') {
+            gap: 20px;
+        }
+        .wayfinder_grid_cell {
+            position: relative;
+            width: 100%;
+            // flex-grow: 1;
+            @include respond-to('md') {
+                width: 47%;
+            }
+            @include respond-to('lg') {
+                width: 32%;
+            }
+            .image_wrap {
+                width: 95%;
+                margin-left: auto;
+                img {
+                    @include border_radius_small;
+                    max-height: 260px;
+                    object-fit: cover
+                }
+            }
+            .text_wrap {
+                @include border_radius_small;
+                @include box_shadow;
+                background-color: $white;
+                padding: 20px;
+                width: 88%;
+                top: -30px; 
+                z-index: 1;
+                position: relative;
+                // height: 160px;
+                @include respond-to('sm') {
+                    width: 82%;
+                    height: unset;
+                }
+                &:after {
+                    content: '';
+                    background-image: url(assets/images/svg/arrow-tab-blue.svg);
+                    background-size: cover;
+                    position: absolute;
+                    top: 20px;
+                    right: 30px;
+                    width: 18px;
+                    height: 18px;
+                }
+                h3 {
+                    color: $blue;
+                    margin-bottom: 10px;
+                    @include respond-to('lg') {
+                        font-size: 22px;
+                        max-width: 92%;
+                    }
+                }
+            }
+        }
+    }
+}

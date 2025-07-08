@@ -1,0 +1,38 @@
+.footer_nav_top_level {
+    list-style-type: none;
+    padding-left: 10px;
+    border-left: solid 1px $lightgrey;
+    @include respond-to('sm') {
+        margin-bottom: 0px;
+    }
+    a {
+        font-weight: 100;
+    }
+    .btn_simple {
+        margin-bottom: 20px;
+        font-weight: 600;
+    }
+    .drop_list {
+        font-weight: 300;
+        list-style-type: none;
+        margin-left: 0rem;
+        li {
+            list-style-type: none;
+            margin-left: 0px;
+        }
+        .menu_cta {
+            list-style-type: none;
+            margin-left: 0rem;
+            .drop_drop_list {
+                li {
+                    list-style-type: none;
+                    margin-left: 0rem;
+                    @include respond-to('lg') {
+                        margin-bottom: 12px;
+                    }
+            
+                }
+            }
+        }
+    }
+}

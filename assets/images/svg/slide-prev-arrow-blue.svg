@@ -1,0 +1,24 @@
+<svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="30" height="30" fill="#F5F5F5"/>
+<g id="Homepage" clip-path="url(#clip0_745_467)">
+<rect width="428" height="5932" transform="translate(-346 -3186)" fill="white"/>
+<g id="Frame 794" clip-path="url(#clip1_745_467)">
+<g id="Group 893">
+</g>
+<g id="Group 901">
+<rect id="Rectangle 9" x="29.0588" y="29.6943" width="29.0588" height="29.0588" rx="14.5294" transform="rotate(-180 29.0588 29.6943)" fill="#0078CE"/>
+<g id="Group 810">
+<path id="Vector 33" d="M21.8772 15.9852C22.4628 15.9852 22.9375 15.5105 22.9375 14.9249C22.9375 14.3394 22.4628 13.8646 21.8772 13.8646L21.8772 15.9852ZM6.13259 14.1752C5.71852 14.5893 5.71852 15.2606 6.13259 15.6747L12.8803 22.4224C13.2943 22.8364 13.9657 22.8364 14.3798 22.4224C14.7938 22.0083 14.7938 21.3369 14.3798 20.9229L8.38182 14.9249L14.3798 8.927C14.7938 8.51293 14.7938 7.84158 14.3798 7.42751C13.9657 7.01344 13.2943 7.01344 12.8803 7.42751L6.13259 14.1752ZM21.8772 13.8646L6.88234 13.8646L6.88234 15.9852L21.8772 15.9852L21.8772 13.8646Z" fill="white"/>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<clipPath id="clip0_745_467">
+<rect width="428" height="5932" fill="white" transform="translate(-346 -3186)"/>
+</clipPath>
+<clipPath id="clip1_745_467">
+<rect width="433" height="423" fill="white" transform="translate(-348 -7)"/>
+</clipPath>
+</defs>
+</svg>

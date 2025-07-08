@@ -1,0 +1,113 @@
+.section_news {
+    // todo: news_post -> make into mixins!
+    
+    .title_wrap {
+        flex-wrap: wrap;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 60px;
+        @include respond-to('sm') {
+            padding-bottom: 30px;
+        }
+        .subtitle {
+            flex-basis: 100%;
+            @include respond-to('sm') {
+                margin-bottom: 0px;
+            }
+        }
+        h2 {
+            margin-bottom: 0px;
+        }
+        @include respond-to('sm') {
+            align-items: end;
+            h2 {
+                flex-basis: 70%;
+                margin-bottom: -7px;
+            }
+            .btn_blue {
+                margin-top: 20px;
+            }
+        }
+    }
+
+    .news_wrap {
+        display: grid;
+        gap: 20px;
+        .slick-slide {
+            margin-right: 8px;
+            margin-left: 8px;
+        }
+        .news_post {
+            @include post_template_portrait;
+            @include respond-to('lg') {
+                @include post_template_landscape;
+            }
+        }
+        .slick-dots {
+            bottom: -45px;
+            li button {
+                border: 2px solid $lightblue;
+            }
+            li.slick-active button {
+                background-color: $lightblue;
+            }
+        }
+        // change the grid layout on large viewports
+        @include respond-to('lg') {
+            height: 72vh;
+            grid-template-columns: 1fr 1fr 1fr;
+            .news_post {
+                // overwrite this for th first child
+                // @include post_template_small
+                &:first-child {
+                    display: unset;
+                    grid-column: 1 / span 2;
+                    grid-row: 1 / span 3;
+                    @include bg_blue;
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    .image_wrap {
+                        position: relative;
+                        overflow: hidden;
+                        .mask_white_small {
+                            display: none;
+                        }
+                        .mask_desktop {
+                            display: block;
+                            position: absolute;
+                            height: 111%;
+                            right: -4px;
+                            top: 0px;
+                        }
+                        img {
+                            max-width: unset;
+                            max-height: 100%;
+                            aspect-ratio: unset;
+                        } 
+                    }
+                    .news_box {
+                        padding-top: 100px;
+                        &::after {
+                            content: none;
+                        }
+                        .text_wrap {
+                            display: flex;
+                            gap: 10px;
+                            flex-direction: column;
+                            width: 80%;
+                            .post_title {
+                                @include h-three;
+                                color: $navy;
+                                margin-bottom: 0px;
+                            }
+                            .post_date, .btn_blue {
+                                display: block;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
