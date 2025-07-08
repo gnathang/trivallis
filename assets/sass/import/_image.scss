@@ -1,0 +1,12 @@
+.section_image {
+    .image_wrapper {
+        width: 100%;
+        height: auto;
+        img {
+            max-height: 700px;
+            object-fit: cover;
+            object-position: top;
+            @include border_radius_small;
+        }
+    }
+}

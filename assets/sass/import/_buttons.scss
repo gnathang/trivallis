@@ -1,0 +1,25 @@
+.btn_simple {
+    @include buttonsimple;
+}
+.btn_my_triv_blue {
+    @include buttonmytrivblue;
+}
+.btn_my_triv_white {
+    @include buttonmytrivwhite;
+}
+.btn_blue {
+    @include buttonblue;
+}
+.btn_lightblue {
+    @include buttonlightblue;
+}
+.btn_purple {
+    @include buttonpurple;
+}
+
+.tag {
+    @include tag;
+}
+.subtitle {
+    @include subtitle;
+}

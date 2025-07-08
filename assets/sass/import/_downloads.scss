@@ -1,0 +1,59 @@
+.section_downloads {
+
+    .intro_text {
+        text-align: center;
+        margin-bottom: 40px;
+        @include respond-to('sm') {
+            margin-bottom: 80px;
+        }
+    }
+
+    .downloads_grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        align-items: end;
+        justify-content: space-evenly;
+        @include respond-to('md') {
+            gap: 20px;
+        }
+        .download_grid_cell {
+            position: relative;
+            width: 100%;
+            @include respond-to('md') {
+                width: 49%;
+            }
+            @include respond-to('lg') {
+                width: 32%;
+            }
+            .text_wrap {
+                @include border_radius_small;
+                @include box_shadow;
+                background-color: $white;
+                padding: 20px;
+                z-index: 1;
+                position: relative;
+                height: 160px;
+                @include respond-to('sm') {
+                    width: 82%;
+                    height: unset;
+                }
+                &:after {
+                    content: '';
+                    background-image: url(assets/images/svg/arrow-tab-blue.svg);
+                    background-size: cover;
+                    position: absolute;
+                    top: 20px;
+                    right: 30px;
+                    width: 18px;
+                    height: 18px;
+                }
+                h3 {
+                    color: $blue;
+                    margin-bottom: 10px;
+                    max-width: 90%;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,665 @@
+<?php
+
+$show_anchor_links = get_field('show_anchor_links');
+$downloads_title = get_field('downloads_title');
+$dir = wp_get_post_parent_id();
+$url = 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+
+$server_name = $_SERVER['SERVER_NAME'];
+
+if (str_contains($server_name, 'cym.')) {
+    $what_am_i = 'cym';
+} else {
+    $what_am_i = 'eng';
+}
+$what_am_i = trim($what_am_i);
+
+?>
+
+<?php get_header(); ?>
+
+<?php get_template_part('selectheader'); ?>
+
+<section class="main_parent">
+    <div class="container">
+        <div class="flex_wrap all_content_wrap">
+
+            <!-- sidebar removed on request of the client, until such time as they may want it back-->
+
+            <?php /*if ($post->post_parent) { ?>
+            <div class="side_nav">
+
+                <?php 
+                
+                    $svg = '<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M0.868873 16.6386C0.244034 17.2635 0.244034 18.2766 0.868873 18.9014C1.49371 19.5262 2.50678 19.5262 3.13162 18.9014L0.868873 16.6386ZM19.6002 1.77002C19.6002 0.886364 18.8839 0.17002 18.0002 0.17002H3.60024C2.71659 0.17002 2.00024 0.886364 2.00024 1.77002C2.00024 2.65368 2.71659 3.37002 3.60024 3.37002H16.4002V16.17C16.4002 17.0537 17.1166 17.77 18.0002 17.77C18.8839 17.77 19.6002 17.0537 19.6002 16.17V1.77002ZM3.13162 18.9014L19.1316 2.90139L16.8689 0.638649L0.868873 16.6386L3.13162 18.9014Z"
+                            fill="#0078CE" />
+                    </svg>';
+
+                    // determine parent of current page
+                    if ($post->post_parent) {
+                        $ancestors = get_post_ancestors($post->ID);
+                        $parent = $ancestors[count($ancestors) - 1];
+                    } else {
+                        $parent = $post->ID;
+                    }
+
+                    $children = wp_list_pages("title_li=&child_of=" . $parent . "&echo=0");
+
+                    if ($children) {
+                    ?>
+                <h3><?php echo get_the_title($parent); ?></h3>
+
+                <ul
+                    class="subnav <?php if (strpos($url,'find-a-property') !== false) { echo 'find_a_property_parent'; } ?>">
+                    <?php 
+                        // current child will have class 'current_page_item'
+                        echo $children; 
+                    ?>
+                </ul>
+
+                <?php 
+                    } 
+                ?>
+
+
+            </div>
+            <?php } */ ?>
+            <!-- if page has parent close-->
+
+            <div class="main_content">
+                <div class="anchor_wrap <?php if (!$show_anchor_links) { ?> remove_margin<?php } ?>">
+                    <?php if (have_rows('content_block')) { ?>
+                        <?php if ($show_anchor_links) { ?>
+                            <h4 class="anchor_title"><?php if ($what_am_i == 'cym') {
+                                                            echo "Neidiwch i";
+                                                        } else {
+                                                            echo "Jump to";
+                                                        } ?></h4>
+                        <?php } ?>
+                        <?php while (have_rows('content_block')) {
+                            the_row();
+
+                            $content_selection = get_sub_field('content_selection');
+
+                            $text_title_anchor = get_sub_field('text_title_anchor');
+
+                            $title = get_sub_field('title');
+                            $main_text = get_sub_field('main_text');
+                            $subtitle = get_sub_field('subtitle');
+
+                            $anchortitle = get_sub_field('title');
+                            $anchorlower = strtolower($anchortitle);
+                            $anchortitlelower = preg_replace('/\s+/', '', $anchorlower);
+                            $anchortitleclean = preg_replace("/[^a-zA-Z]+/", "", $anchortitlelower);
+
+                            $related_title_anchor = get_sub_field('related_title_anchor');
+                            $related_title = get_sub_field('related_title');
+                            $related_intro_text = get_sub_field('related_intro_text');
+
+                            $relatedanchortitle = get_sub_field('related_title');
+                            $relatedanchortitlelower = strtolower($relatedanchortitle);
+                            $relatedanchortitlelowerspace = preg_replace('/\s+/', '', $relatedanchortitlelower);
+                            $relatedtitleclean = preg_replace("/[^a-zA-Z]+/", "", $relatedanchortitlelowerspace);
+
+                            $numbers_title_anchor = get_sub_field('numbers_title_anchor');
+                            $number_blocks_title = get_sub_field('number_blocks_title');
+
+                            $numberanchortitle = get_sub_field('number_blocks_title');
+                            $numberanchortitlelower = strtolower($numberanchortitle);
+                            $numberanchortitlelowerspace = preg_replace('/\s+/', '', $numberanchortitlelower);
+                            $numbertitleclean = preg_replace("/[^a-zA-Z]+/", "", $numberanchortitlelowerspace);
+
+
+                        ?>
+
+                            <?php if (get_sub_field('content_selection') == 'text') { ?>
+
+                                <?php if ($text_title_anchor) { ?>
+                                    <a class="btn_blue" href="#title_<?php echo $anchortitleclean; ?>"><?php echo $title; ?></a>
+                                <?php } ?>
+
+                            <?php } elseif (get_sub_field('content_selection') == 'related') {  ?>
+
+                                <?php if ($related_title_anchor) { ?>
+                                    <a class="btn_blue" href="#title_<?php echo $relatedtitleclean; ?>"><?php echo $related_title; ?></a>
+                                <?php } ?>
+
+                            <?php } elseif (get_sub_field('content_selection') == 'numberedblocks') {  ?>
+
+                                <?php if ($numbers_title_anchor) { ?>
+                                    <a class="btn_blue" href="#title_<?php echo $numbertitleclean; ?>"><?php echo $number_blocks_title; ?></a>
+                                <?php } ?>
+
+                            <?php } else {  ?>
+
+                            <?php } ?>
+
+
+
+                    <?php wp_reset_postdata();
+                        }
+                    }  ?>
+
+                </div>
+
+                <!-- -->
+
+                <?php if (have_rows('content_block')) {
+                    while (have_rows('content_block')) {
+                        the_row();
+
+                        $content_selection = get_sub_field('content_selection');
+
+                        $alert_colour = get_sub_field('alert_colour');
+                        $alert_title = get_sub_field('alert_title');
+                        $alert_text = get_sub_field('alert_text');
+                        $use_custom_icon = get_sub_field('use_custom_icon');
+                        $alert_custom_icon = get_sub_field('alert_custom_icon');
+                        $alert_buttons = get_sub_field('alert_buttons');
+
+                        $image = get_sub_field('image');
+
+                        $small_text = get_sub_field('small_text');
+                        $large_text = get_sub_field('large_text');
+                        $cta_image = get_sub_field('cta_image');
+                        $cta_buttons = get_sub_field('cta_buttons');
+
+                        $title = get_sub_field('title');
+                        $subtitle = get_sub_field('subtitle');
+                        $main_text = get_sub_field('main_text');
+
+                        $anchortitle = get_sub_field('title');
+                        $anchorlower = strtolower($anchortitle);
+                        $anchortitlelower = preg_replace('/\s+/', '', $anchorlower);
+                        $anchortitleclean = preg_replace("/[^a-zA-Z]+/", "", $anchortitlelower);
+
+                        $related_title_anchor = get_sub_field('related_title_anchor');
+                        $related_title = get_sub_field('related_title');
+                        $related_intro_text = get_sub_field('related_intro_text');
+
+                        $relatedanchortitle = get_sub_field('related_title');
+                        $relatedanchortitlelower = strtolower($relatedanchortitle);
+                        $relatedanchortitlelowerspace = preg_replace('/\s+/', '', $relatedanchortitlelower);
+                        $relatedtitleclean = preg_replace("/[^a-zA-Z]+/", "", $relatedanchortitlelowerspace);
+
+                        $numbers_title_anchor = get_sub_field('numbers_title_anchor');
+                        $number_blocks_title = get_sub_field('number_blocks_title');
+
+                        $numberanchortitle = get_sub_field('number_blocks_title');
+                        $numberanchortitlelower = strtolower($numberanchortitle);
+                        $numberanchortitlelowerspace = preg_replace('/\s+/', '', $numberanchortitlelower);
+                        $numbertitleclean = preg_replace("/[^a-zA-Z]+/", "", $numberanchortitlelowerspace);
+
+
+                ?>
+
+
+                        <?php if (get_sub_field('content_selection') == 'text') { ?>
+                            <div class="parent_text_wrap">
+
+                                <?php if ($title) { ?>
+                                    <h3 id="title_<?php echo $anchortitleclean; ?>"><?php echo $title; ?></h3>
+                                <?php } ?>
+
+                                <?php if ($subtitle) { ?>
+                                    <h4><?php echo $subtitle; ?></h4>
+                                <?php } ?>
+
+                                <?php if ($main_text) { ?>
+                                    <?php echo $main_text; ?>
+                                <?php } ?>
+
+                            </div>
+
+                        <?php } elseif (get_sub_field('content_selection') == 'image') {  ?>
+
+                            <?php $bannerArgs = array(
+                                'class' => 'content_image',
+                                'id' => $image,
+                                'lazyload' => false
+                            );
+
+                            echo build_srcset('banner', $bannerArgs); ?>
+
+
+                        <?php } elseif (get_sub_field('content_selection') == 'alert') {  ?>
+
+                            <div class="alert_wrap alert_<?php echo $alert_colour; ?>">
+                                <div class="flex_wrap">
+                                    <h3>
+                                        <?php if ($use_custom_icon) { ?>
+                                            <img class="alert_custom_icon" src="<?php echo $alert_custom_icon; ?>" alt="alert icon">
+                                        <?php } else { ?>
+                                            <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M11.5 23C5.14912 23 0 17.8509 0 11.5C0 5.14841 5.14912 0 11.5 0C17.8516 0 23 5.14841 23 11.5C23 17.8509 17.8516 23 11.5 23ZM11.5 2.15625C6.33938 2.15625 2.15625 6.33938 2.15625 11.5C2.15625 16.6599 6.33938 20.8438 11.5 20.8438C16.6606 20.8438 20.8438 16.6599 20.8438 11.5C20.8438 6.33938 16.6606 2.15625 11.5 2.15625ZM11.5007 13.6598C10.677 13.6598 10.0546 13.23 10.0546 12.535V6.16688C10.0546 5.47256 10.677 5.04275 11.5007 5.04275C12.3043 5.04275 12.9468 5.4891 12.9468 6.16688V12.535C12.9468 13.2135 12.3043 13.6598 11.5007 13.6598ZM11.5007 15.0938C12.2921 15.0938 12.9353 15.7378 12.9353 16.5291C12.9353 17.3204 12.2921 17.9637 11.5007 17.9637C10.7094 17.9637 10.0654 17.3204 10.0654 16.5291C10.0654 15.7378 10.7094 15.0938 11.5007 15.0938Z" fill="#CC4270" />
+                                            </svg>
+                                        <?php } ?>
+                                        <?php if ($alert_title) { ?><?php echo $alert_title; ?><?php } ?>
+                                    </h3>
+                                </div>
+                                <?php if ($alert_text) { ?>
+                                    <div class="text_area">
+                                        <p><?php echo $alert_text; ?></p>
+                                    </div>
+                                <?php } ?>
+                                <?php if (have_rows('alert_buttons')) { ?>
+                                    <div class="flex_wrap buttons_wrap">
+                                        <?php
+                                        while (have_rows('alert_buttons')) {
+                                            the_row();
+                                        ?>
+                                            <?php
+                                            $alert_button = get_sub_field('alert_button');
+                                            if ($alert_button) :
+                                                $alert_button_url = $alert_button['url'];
+                                                $alert_button_title = $alert_button['title'];
+                                                $alert_button_target = $alert_button['target'] ? $alert_button['target'] : '_self';
+                                            ?>
+                                                <a class="btn_default" href="<?php echo esc_url($alert_button_url); ?>" target="<?php echo esc_attr($alert_button_target); ?>"><?php echo esc_html($alert_button_title); ?></a>
+                                            <?php endif; ?>
+
+                                        <?php wp_reset_postdata();
+                                        } ?>
+
+                                    </div>
+                                <?php }  ?>
+                            </div>
+
+
+                        <?php } elseif (get_sub_field('content_selection') == 'related') {  ?>
+
+                            <div class="parent_related_wrap">
+
+                                <?php if ($related_title) { ?>
+                                    <h3 id="title_<?php echo $relatedtitleclean; ?>"><?php echo $related_title; ?></h3>
+                                <?php } ?>
+
+                                <?php if ($related_intro_text) { ?>
+                                    <div><?php echo $related_intro_text; ?></div>
+                                <?php } ?>
+
+                                <?php if (have_rows('related_items')) { ?>
+                                    <div class="related_block">
+                                        <?php while (have_rows('related_items')) {
+                                            the_row();
+                                        ?>
+                                            <?php
+                                            $related_title = get_sub_field('related_title');
+                                            $related_text = get_sub_field('related_text');
+                                            $related_link = get_sub_field('related_link'); ?>
+                                            <div class="related_item">
+                                                <?php if ($related_title) { ?>
+                                                    <h3><?php echo $related_title; ?></h3>
+                                                <?php } ?>
+
+                                                <?php if ($related_text) { ?>
+                                                    <p><?php echo $related_text; ?></p>
+                                                <?php } ?>
+
+                                                <?php if ($related_link) :
+                                                    $related_link_url = $related_link_button['url'];
+                                                    $related_link_button_title = $related_link_button['title'];
+                                                    $related_link_button_target = $related_link_button['target'] ? $related_link_button['target'] : '_self';
+                                                ?>
+                                                    <a class="btn_default" href="<?php echo esc_url($related_link_button_url); ?>" target="<?php echo esc_attr($related_link_button_target); ?>"><?php echo esc_html($related_link_button_title); ?></a>
+                                                <?php endif; ?>
+                                            </div>
+                                            <?php wp_reset_postdata(); ?>
+                                        <?php } ?>
+                                    </div>
+                                <?php } ?>
+
+                            </div>
+
+
+                        <?php } elseif (get_sub_field('content_selection') == 'imagecta') {  ?>
+                            <div class="parent_image_cta">
+                                <div class="cta_text_area">
+                                    <?php if ($small_text) { ?>
+                                        <h4 class="subtitle"><?php echo $small_text; ?></h4>
+                                    <?php } ?>
+
+                                    <?php if ($large_text) { ?>
+                                        <h3><?php echo $large_text; ?></h3>
+                                    <?php } ?>
+                                    <div class="button_wrap">
+                                        <?php if (have_rows('cta_buttons')) {
+                                            while (have_rows('cta_buttons')) {
+                                                the_row();
+                                        ?>
+                                                <?php
+                                                $cta_button = get_sub_field('cta_button');
+                                                $turn_into_download_link = get_sub_field('turn_into_download_link');
+                                                $download_link = get_sub_field('download_link');
+                                                ?>
+                                                <?php if ($turn_into_download_link) { ?>
+
+                                                    <?php
+                                                    if ($download_link) :
+                                                        $download_link_url = $download_link['url'];
+                                                        $download_link_title = $download_link['title'];
+                                                        $download_link_target = $download_link['target'] ? $download_link['target'] : '_self';
+                                                    ?>
+                                                        <a download class="btn_default" href="<?php echo $download_link; ?>" target="<?php echo esc_attr($download_link_target); ?>"><?php if ($what_am_i == 'cym') {
+                                                                                                                                                                                            echo "Lawrlwytho";
+                                                                                                                                                                                        } else {
+                                                                                                                                                                                            echo "Download";
+                                                                                                                                                                                        } ?></a>
+
+                                                    <?php endif; ?>
+
+                                                <?php } else { ?>
+                                                    <?php
+                                                    if ($cta_button) :
+                                                        $cta_button_url = $cta_button['url'];
+                                                        $cta_button_title = $cta_button['title'];
+                                                        $cta_button_target = $cta_button['target'] ? $cta_button['target'] : '_self';
+                                                    ?>
+                                                        <a class="btn_default" href="<?php echo esc_url($cta_button_url); ?>" target="<?php echo esc_attr($cta_button_target); ?>"><?php echo esc_html($cta_button_title); ?></a>
+                                                    <?php endif; ?>
+
+                                                <?php } ?>
+                                        <?php wp_reset_postdata();
+                                            }
+                                        }  ?>
+                                    </div>
+                                </div>
+                                <div class="cta_image_area">
+                                    <?php $bannerCTA = array(
+                                        'class' => 'content_image',
+                                        'id' => $cta_image,
+                                        'lazyload' => false
+                                    );
+
+                                    echo build_srcset('', $bannerCTA); ?>
+                                </div>
+                            </div>
+                        <?php } elseif (get_sub_field('content_selection') == 'numberedblocks') {  ?>
+
+                            <div class="parent_number_wrap">
+
+                                <?php if ($number_blocks_title) { ?>
+                                    <h3 id="id_<?php echo $numbertitleclean; ?>"><?php echo $number_blocks_title; ?></h3>
+                                <?php } ?>
+
+                                <div class="button_wrap">
+                                    <?php if (have_rows('number_blocks')) {
+                                        while (have_rows('number_blocks')) {
+                                            the_row();
+                                    ?>
+                                            <?php
+                                            $number_title = get_sub_field('number_title');
+                                            $number_text = get_sub_field('number_text');
+                                            $row = get_row_index() - 0;
+                                            ?>
+                                            <div class="row_wrap">
+                                                <?php if ($number_title) { ?>
+                                                    <h3><?php echo $row; ?>. <?php echo $number_title; ?></h3>
+                                                <?php } ?>
+                                                <?php if ($number_text) { ?>
+                                                    <p><?php echo $number_text; ?></p>
+                                                <?php } ?>
+                                            </div>
+                                    <?php wp_reset_postdata();
+                                        }
+                                    }  ?>
+                                </div>
+
+
+                            </div>
+
+
+                        <?php } elseif (get_sub_field('content_selection') == 'divider') {  ?>
+
+                            <div class="divider"></div>
+
+                        <?php } elseif (get_sub_field('content_selection') == 'postcode') {  ?>
+                            <!-- <div class="postcode_wrap alert_white">
+                    <div class="flex_wrap">
+                        <h3>Your Neighbourhood Team</h3>
+                    </div>
+                    <div class="text_area">
+                        <p>Want to learn more about your neighbourhood team? Enter your postcode to find out more.</p>
+                    </div>
+                    <div class="text_area">
+                        <form name="loginBox" target="#here" method="post">
+                            <input name="search" type="search" />
+                            <input type="submit" value="" />
+                        </form>
+                    </div>
+                    <div class="text_area">
+                        <h4 class="blue">Your Community Housing Officer</h4>
+                        <h3>Duncan Forbes</h3>
+                    </div>
+                    <div class="text_area">
+                        <p>Email: <a href="mailto:d.forbes@trivallis.co.uk">d.forbes@trivallis.co.uk</a><br>
+                            Phone: <a href="tel:+44(0)7635374472">+44(0)7635 374 472</a></p>
+                    </div>
+                    <div class="text_area">
+                        <p>Drop-in Surgery dates:<br>
+                            24/04/24 - 10:00am<br>31/05/24 - 10:00am</p>
+                        <p>Estate Inspection dates:<br>24/04/24 - 10:00am<br>
+                            31/05/24 - 10:00am</p>
+                    </div>
+
+                </div> -->
+
+                            <div class="postcode_wrap alert_white">
+
+                                <div class="flex_wrap">
+                                    <h3><?php if ($what_am_i == 'cym') {
+                                            echo "Eich Tîm Cymdogaeth";
+                                        } else {
+                                            echo "Your Neighbourhood Team";
+                                        } ?></h3>
+                                </div>
+                                <div class="text_area">
+                                    <p>
+                                        <?php if ($what_am_i == 'cym') {
+                                            echo "Eisiau dysgu rhagor am eich tîm cymdogaeth? Teipiwch eich cod post i ddysgu rhagor.";
+                                        } else {
+                                            echo "Want to learn more about your neighbourhood team? Enter your postcode to find out more.";
+                                        } ?></p>
+                                </div>
+                                <div class="text_area">
+                                    <form name="loginBox" target="#here" method="post" id="postcodeForm">
+                                        <input name="search" type="search" id="postcodeInput" />
+                                        <input type="submit" value="<?php if ($what_am_i == 'cym') {
+                                                                        echo "Cyflwyno";
+                                                                    } else {
+                                                                        echo "Submit";
+                                                                    } ?>" id="searchButton" />
+                                    </form>
+                                </div>
+                                <div id="results"></div>
+                            </div>
+
+                        <?php } else {  ?>
+
+                        <?php } ?>
+
+
+
+                <?php wp_reset_postdata();
+                    }
+                }  ?>
+            </div>
+        </div>
+    </div>
+</section>
+
+<?php if (have_rows('downloads_repeater') || have_rows('related_pages') || have_rows('useful_links')) { ?>
+
+    <section class="blue_more">
+        <div class="container">
+            <div class="main_content">
+
+                <?php if (have_rows('downloads_repeater') || have_rows('useful_links')) { ?>
+                    <div class="downloads_wrap">
+                        <?php if (have_rows('downloads_repeater')) { ?>
+                            <div class="flex_wrap">
+                                <h3 class="flex_wrap download_useful_title">
+                                    <svg width="47" height="47" viewBox="0 0 47 47" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        <rect width="47" height="47" fill="url(#pattern0)" />
+                                        <defs>
+                                            <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+                                                <use xlink:href="#image0_1151_33745" transform="scale(0.01)" />
+                                            </pattern>
+                                            <image id="image0_1151_33745" width="100" height="100" xlink:href="data:image/png;base64,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" />
+                                        </defs>
+                                    </svg>
+                                    <?php echo $downloads_title; ?>
+                                </h3>
+                            </div>
+                            <div class="flex_wrap">
+                                <?php while (have_rows('downloads_repeater')) {
+                                    the_row();
+                                ?>
+                                    <?php
+                                    $download_name = get_sub_field('download_name');
+                                    $download_file = get_sub_field('download_file');
+                                    $row = get_row_index() - 0;
+                                    ?>
+                                    <a href="<?php echo $download_file; ?>" download title="<?php echo $download_name; ?>" class="btn_simple">
+                                        <?php echo $download_name; ?>
+                                    </a>
+                                <?php wp_reset_postdata();
+                                } ?>
+                            </div>
+                        <?php } ?>
+
+                        <?php if (have_rows('useful_links')) { ?>
+                            <div class="flex_wrap useful_links_title_wrap <?php if (have_rows('downloads_repeater') && have_rows('useful_links')) { ?> add_margin<?php } ?>">
+                                <h3 class="flex_wrap download_useful_title">
+                                    <!-- <svg width="47" height="47" viewBox="0 0 47 47" fill="none" xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <rect width="47" height="47" fill="url(#pattern0)" />
+                            <defs>
+                                <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+                                    <use xlink:href="#image0_1151_33745" transform="scale(0.01)" />
+                                </pattern>
+                                <image id="image0_1151_33745" width="100" height="100"
+                                    xlink:href="data:image/png;base64,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" />
+                            </defs>
+                        </svg> -->
+                                    <img class="useful_links_icon" src="<?php echo get_template_directory_uri() . '/assets/images/svg/useful-links-icon.svg'; ?>" alt="useful links icon">
+                                    <?php if ($what_am_i == 'cym') {
+                                        echo "Dolenni defnyddiol";
+                                    } else {
+                                        echo "Useful Links";
+                                    } ?>
+                                </h3>
+                            </div>
+                            <div class="flex_wrap useful_links_wrap">
+                                <?php while (have_rows('useful_links')) {
+                                    the_row();
+                                ?>
+                                    <?php
+                                    $useful_link = get_sub_field('useful_link');
+                                    $row = get_row_index() - 0;
+                                    ?>
+                                    <?php
+                                    if ($useful_link) :
+                                        $useful_link_url = $useful_link['url'];
+                                        $useful_link_title = $useful_link['title'];
+                                        $useful_link_target = $useful_link['target'] ? $useful_link['target'] : '_self';
+                                    ?>
+                                        <a download class="btn_simple" href="<?php echo $useful_link_url; ?>" target="<?php echo esc_attr($useful_link_target); ?>"><?php echo $useful_link_title; ?></a>
+
+                                    <?php endif; ?>
+
+                                <?php wp_reset_postdata();
+                                } ?>
+                            </div>
+                        <?php }  ?>
+                    </div>
+                <?php }  ?>
+
+                <?php if (have_rows('related_pages')) { ?>
+                    <div class="related_wrap">
+                        <h4 class="subtitle">
+                            <?php if ($what_am_i == 'cym') {
+                                echo "Tudalennau cysylltiedig";
+                            } else {
+                                echo "Related pages";
+                            } ?></h4>
+                        <div class="related_pages_wrap">
+
+                            <?php while (have_rows('related_pages')) {
+                                the_row();
+                            ?>
+                                <?php
+                                $post_object = get_sub_field('page_link');
+                                $parent_post_id = wp_get_post_parent_id($post_object->ID); // Get the parent post ID
+                                $parent_post = get_post($parent_post_id); // Get the parent post object
+                                $parent_title = $parent_post ? $parent_post->post_title : ''; // Get the parent post title
+
+                                ?>
+                                <?php if ($post_object) : ?>
+                                    <?php // override $post
+                                    $post = $post_object;
+                                    setup_postdata($post);
+                                    ?>
+                                    <div class="related_page_wrap">
+                                        <?php if (!wp_is_mobile()) { ?>
+                                            <div class="image_wrap">
+                                                <?php echo get_the_post_thumbnail($post->ID, 'pageimage', array('class' => '')); ?>
+                                            </div>
+                                        <?php } ?>
+                                        <div class="related_item text_wrap">
+                                            <a class="" href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
+                                                <div class="row_wrap">
+                                                    <?php $post_type = get_post_type($post); ?>
+                                                    <?php if ($post_type === 'post' || $post_type === 'tenant-story') { ?>
+                                                        <p class="tag"><?php if ($post_type == 'tenant-story') { ?>Tenant Story
+                                                            <?php } elseif ($post_type == 'post') { ?>Post <?php } ?></p>
+                                                    <?php } elseif ($parent_title) { ?><p class="tag"><?php echo $parent_title; ?></p>
+                                                    <?php } ?>
+                                                    <div class="page_link">
+                                                        <h3><?php the_title(); ?></h3>
+                                                    </div>
+                                                </div>
+                                            </a>
+
+                                            <?php /*
+                        $small_title = get_sub_field('small_title');
+                        $page_link = get_sub_field('page_link');
+                        $row = get_row_index() - 0;
+                        ?>
+                            <div class="row_wrap">
+                                <p><?php echo $small_title; ?></p>
+                                <div class="page_link">
+
+                                    <?php
+                                $featured_post = get_sub_field('page_link');
+                                if( $featured_post ): ?>
+                                    <?php print_r($page_link); ?>
+                                    <h3><?php echo esc_html( $featured_post->post_title ); ?></h3>
+                                    <?php endif; ?>
+
+                                </div>
+                            </div>
+                            <?php wp_reset_postdata();  */  ?>
+
+
+
+                                        </div>
+                                        <?php wp_reset_postdata(); // IMPORTANT - reset the $post object so the rest of the page works correctly 
+                                        ?>
+                                    <?php endif; ?>
+                                    </div>
+                                <?php } ?>
+                        </div>
+                    </div>
+                <?php } ?>
+            </div>
+    </section>
+
+<?php } ?>
+
+
+<?php get_template_part('signposts'); ?>
+
+<?php get_footer(); ?>

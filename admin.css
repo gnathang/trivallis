@@ -1,0 +1,3 @@
+.acf-repeater .acf-row-handle.order , .acf-repeater .acf-row-handle.remove, .acf-repeater .acf-row-handle.order + td{
+    border-bottom: 2px solid black;
+}

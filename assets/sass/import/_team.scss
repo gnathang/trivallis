@@ -1,0 +1,63 @@
+.section_team {
+    .intro_text_wrap {
+        text-align: center;
+        margin-bottom: 40px;
+        @include bg_blue;
+        background-color: $white;
+        h2, h3 {
+            margin-bottom: 0px;
+        }
+        @include respond-to('lg') {
+            width: 60%;
+            margin: 0 auto;
+            margin-bottom: 60px;
+        }
+    }
+    .team_grid {
+        display: grid;
+        gap: 20px;
+        @include respond-to('md') {
+            grid-template-columns: 1fr 1fr;
+        }
+        .team_member_wrap {
+            .image_wrap {
+                width: 95%;
+                margin-left: auto;
+                img {
+                    @include border_radius_small;
+                    height: 400px;
+                    object-fit: cover;
+                    object-position: top;
+                    @include respond-to('sm') {
+                        height: 240px;
+                    }
+                }
+                &.zoomout {
+                    img {
+                        object-fit: contain;
+                    }
+                }
+            }
+            .text_wrap {
+                @include border_radius_small;
+                @include box_shadow;
+                background-color: $white;
+                padding: 20px;
+                width: 88%;
+                top: -30px; 
+                z-index: 1;
+                position: relative;
+                height: auto;
+                @include respond-to('sm') {
+                    width: 84%;
+                }
+                h4, p {
+                    color: $blue;
+                }
+                .member_bio {
+                    color: $offblack;
+                }
+            }
+        }
+    }
+}

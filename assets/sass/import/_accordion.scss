@@ -1,0 +1,200 @@
+.section_accordion{
+
+    
+    .text_wrap {
+        text-align: center;
+        padding: 20px 0px;
+        @include respond-to('lg') {
+            width: 60%;
+            margin: 0 auto;
+            padding: 60px 0px;
+        }
+    }
+  
+    .accordion_wrap {
+        display: grid;
+        margin-bottom: 20px;
+        border-top: solid 1px #f4f4f4f4 ;
+        @include respond-to('md') {
+            margin-bottom: 50px;
+            grid-template-columns: 1fr 2.8fr;
+            align-items: flex-start;
+        }
+        .accord_icon_desktop {
+            width: 7rem;
+            height: 7rem;
+            display: none;
+            @include respond-to('md') {
+                display: block;
+            }
+        }
+        .accord_icon_mob {
+            width: 2rem;
+            height: 2rem;
+            @include respond-to('md') {
+                display: none;
+            }
+        }
+        .accord_butt {
+            margin: 15px 0;
+            cursor: pointer;
+            @include transition;
+            h3 {
+                position:relative;
+                margin-bottom: 20px;
+                display: flex;
+                &:after{
+                    content: '';
+                    background-image: url('assets/images/svg/slide-next-arrow-blue.svg');
+                    background-size: cover;
+                    display: block;
+                    transform: rotate(90deg);
+                    position: relative;
+                    margin-left: auto;
+                    height: 2rem;
+                    width: 2rem;
+                    @include transition;
+                };
+            }
+            @include respond-to('sm') {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                gap: 10px;
+                p {
+                    flex-basis: 100%;
+                }
+                h3 {
+                    margin-bottom: 0px;
+                    display: contents;
+                    &:after{
+                        height: 1.5rem;
+                        width: 1.5rem;
+                    };
+                }
+            }
+        }
+        .text_open {
+            height: auto;
+            max-height: 0;
+            overflow: hidden;
+            @include transition;
+            @include respond-to('md'){
+                grid-column: 2;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 20px;
+            }
+            .content_block {
+                @include border_radius_small;
+                padding: 20px;
+                margin: 0px 10px;
+                margin-bottom: 10px;
+                min-height: 12rem;
+                @include respond-to('md') {
+                    margin: 0px;
+                }
+            }
+            .content_block:nth-child(4n+1) {
+                background-color: $sp_pink_bg_hover; /* Apply this color to the 1st, 5th, 9th, etc. .content_block */
+            }
+            .content_block:nth-child(4n+2) {
+                background-color: $skyblue_hover; /* Apply this color to the 2nd, 6th, 10th, etc. .content_block */
+            }
+            .content_block:nth-child(4n+3) {
+                background-color: $sp_pink_bg; /* Apply this color to the 3rd, 7th, 11th, etc. .content_block */
+            }
+            .content_block:nth-child(4n+4) {
+                background-color: $sp_blue_bg; /* Apply this color to the 4th, 8th, 12th, etc. .content_block */
+            }
+            .slick_track {
+                padding-top: 40px;
+                .slick-slide {
+                    margin: 0px 26px;
+                    transform: translateX(-26px);
+                    &:nth-child(4n+1) {
+                        .content_block {
+                            background-color: $sp_pink_bg_hover; /* Apply this color to the 1st, 5th, 9th, etc. .content_block */
+                        }
+                    }
+                    &:nth-child(4n+2) {
+                        .content_block {
+                            background-color: $skyblue_hover; /* Apply this color to the 2nd, 6th, 10th, etc. .content_block */
+                        }
+                    }
+                    &:nth-child(4n+3) {
+                        .content_block {
+                            background-color: $sp_pink_bg; /* Apply this color to the 3rd, 7th, 11th, etc. .content_block */
+                        }
+                    }
+                    &:nth-child(4n+4) {
+                        .content_block {
+                            background-color: $sp_blue_bg; /* Apply this color to the 4th, 8th, 12th, etc. .content_block */
+                        }
+                    }
+                }
+            }
+            .slick-arrow {
+                top: 8%;
+                &:before {
+                    content: '';
+                    background-size: cover;
+                    width: 200%;
+                    height: 200%;
+                    position: absolute;
+                    top: -100%;
+                    right: 0px;
+                    opacity: 1;
+                    height: 14px;
+                    width: 14px;
+                    @include respond-to('lg') {
+                        top: 60%;
+                    }
+                }
+                &.slick-prev {
+                    left: unset; // reset to overwrite
+                    right: 6.5%;
+                    @include respond-to('sm') {
+                        right: 12%; 
+                    }
+        
+                    &:before {
+                        background-image: url('assets/images/svg/slide-prev-arrow-blue.svg');
+                    }
+                }
+                &.slick-next {
+                    right: 3%;
+                    &:before {
+                        background-image: url('assets/images/svg/slide-next-arrow-blue.svg');
+                    }
+                }
+            }
+        }
+
+        &.active {
+            .accord_butt {
+                // background-color: $orange;
+                @include transition;
+                h3 {
+                    &:after{
+                        background-image: url('assets/images/svg/slide-next-arrow-blue.svg');
+                        background-size: cover;
+                        transform: rotate(-90deg);
+                        @include transition;
+                    }
+                }
+            }
+            .text_open {
+                height:auto;
+                max-height: 2000px;
+                overflow: hidden;
+                @include transition;
+            }        
+        }
+        &:hover{
+            .accord_butt{
+               
+            }
+        }
+    }
+}

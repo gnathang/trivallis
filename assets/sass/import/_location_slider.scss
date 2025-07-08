@@ -1,0 +1,48 @@
+
+
+.section_location_slider {
+    .location_slide {
+        border-radius: 50%;
+        display: grid;
+        gap: 10px;
+        padding: 2rem;
+        cursor: grab;
+        &.slide_one {
+            transform: scale(1.2);
+            background-color: $lightblue;
+        }
+        .link_wrap {
+            border-radius: 50%;
+            display: grid;
+            padding: 1rem;
+            cursor: pointer;
+            &:hover {
+                background-color: $blue !important;
+            }
+        }
+        &:nth-child(2n) {
+            .link_wrap {
+                background-color: $blue;
+                &:hover {
+                    background-color: $lightblue;
+                }
+            }
+        }
+        &:nth-child(3n) {
+            .link_wrap {
+                background-color: $magenta;
+                &:hover {
+                    background-color: $darkmagenta;
+                }
+            }
+        }
+        &:nth-child(4n) {
+            .link_wrap {
+                background-color: $skyblue;
+                &:hover {
+                    background-color: $blue;
+                }
+            }
+        }
+    }
+}

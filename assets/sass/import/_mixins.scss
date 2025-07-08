@@ -1,0 +1,1387 @@
+// Main colours
+$orange: #B96D40;
+$orangehover: #DE6C28;
+$black: rgb(0, 0, 0);
+$offblackhover: #1D2B29;
+$whitealpha: rgba(255, 255, 255,0.9);
+
+//
+// Trivallis Colours
+//
+
+// primary
+$blue: #0078CE;
+$offblack: #58575C;
+$white: #FFF;
+
+// secondary
+$purple: #9A5CAD;
+$cyan: #00B5E2;
+$magenta: #CC4270;
+
+// tertiary
+$mint: #8ECECA;
+$yellow: #F6B21A;
+$lightgrey: #F0F0F0;
+
+// added text colours
+$grey: #8D8D90; // faded text colour
+
+$skyblue: #E9FAFF;
+$skyblue_hover: #D5F4FE;
+
+$sp_blue_bg: #E2F0FB;
+$sp_blue_bg_hover: #D1EBF9;
+$darkgreen: #334A49;
+
+$lightblue: #A3CEED; // homepage header h1 colour
+$navy: #002B4A;
+
+
+// signpost pink
+$sp_pink_bg: #FAE9FF;
+$sp_pink_bg_hover: #F6DCFE;
+$darkmagenta: #491828;
+
+$lightmagenta : #FFF4F8;
+
+
+/* Responsive Layouts */
+
+/// Mixin to manage responsive breakpoints
+/// @author Hugo Giraudel
+/// @param {String} $breakpoint - Breakpoint name
+/// @require $breakpoints
+@mixin respond-to($breakpoint) {
+  // If the key exists in the map
+  @if map-has-key($breakpoints, $breakpoint) {
+    // Prints a media query based on the value
+    @media #{inspect(map-get($breakpoints, $breakpoint))} {
+      @content;
+    }
+  }
+
+  // If the key doesn't exist in the map
+  @else {
+    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+        + "Available breakpoints are: #{map-keys($breakpoints)}.";
+  }
+}
+
+$breakpoints: (
+  'sm':  ( max-width:  767px ),
+  'md': ( min-width:  768px ),
+'ipad': (min-width: 960px),
+  'lg':  ( min-width: 1200px ),
+  'xl':  ( min-width: 1600px )
+) !default;
+
+/* Type sizes */
+
+/* Responsive grid */
+
+    @mixin respond-to ($breakpoint) {
+
+        // $breakpoint is simply a variable that can have several values
+
+        @if $breakpoint==tablet {
+
+
+@media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (-webkit-min-device-pixel-ratio: 1),
+    only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (orientation: portrait) 
+  and (-webkit-min-device-pixel-ratio: 1),
+    only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (orientation: landscape) 
+  and (-webkit-min-device-pixel-ratio: 1),
+    only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (-webkit-min-device-pixel-ratio: 2),
+    only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (orientation: portrait) 
+  and (-webkit-min-device-pixel-ratio: 2),
+    only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (orientation: landscape) 
+  and (-webkit-min-device-pixel-ratio: 2),
+    only screen 
+  and (min-device-width: 834px) 
+  and (max-device-width: 1112px)
+  and (-webkit-min-device-pixel-ratio: 2),
+    only screen 
+  and (min-device-width: 834px) 
+  and (max-device-width: 834px) 
+  and (orientation: portrait) 
+  and (-webkit-min-device-pixel-ratio: 2),
+    only screen 
+  and (min-device-width: 1112px) 
+  and (max-device-width: 1112px) 
+  and (orientation: landscape) 
+  and (-webkit-min-device-pixel-ratio: 2),
+    only screen 
+  and (min-device-width: 1024px) 
+  and (max-device-width: 1366px)
+  and (-webkit-min-device-pixel-ratio: 2),
+    only screen 
+  and (min-device-width: 1024px) 
+  and (max-device-width: 1024px) 
+  and (orientation: portrait) 
+  and (-webkit-min-device-pixel-ratio: 2)
+{
+            @content;
+        }
+      }
+
+      @if $breakpoint==mobile {
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 480px)
+  and (-webkit-min-device-pixel-ratio: 2),
+  only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 480px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: portrait),
+  only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 480px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: landscape),
+  only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 568px)
+  and (-webkit-min-device-pixel-ratio: 2),
+  only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 568px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: portrait),
+  only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 568px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: landscape),
+  only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 667px) 
+  and (-webkit-min-device-pixel-ratio: 2),
+  only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 667px) 
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: portrait), 
+  only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 667px) 
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: landscape), 
+  only screen 
+  and (min-device-width: 414px) 
+  and (max-device-width: 736px) 
+  and (-webkit-min-device-pixel-ratio: 3),
+  only screen 
+  and (min-device-width: 414px) 
+  and (max-device-width: 736px) 
+  and (-webkit-min-device-pixel-ratio: 3)
+  and (orientation: portrait),
+  only screen 
+  and (min-device-width: 414px) 
+  and (max-device-width: 736px) 
+  and (-webkit-min-device-pixel-ratio: 3)
+  and (orientation: landscape),
+  only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 812px) 
+  and (-webkit-min-device-pixel-ratio: 3),
+  only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 812px) 
+  and (-webkit-min-device-pixel-ratio: 3)
+  and (orientation: portrait),
+  only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 812px) 
+  and (-webkit-min-device-pixel-ratio: 3)
+  and (orientation: landscape),
+  only screen 
+  and (min-device-width: 390px) 
+  and (max-device-width: 844px) 
+  and (-webkit-min-device-pixel-ratio: 3)
+  and (orientation: portrait),
+  only screen 
+  and (min-device-width: 390px) 
+  and (max-device-width: 844px) 
+  and (-webkit-min-device-pixel-ratio: 3)
+  and (orientation: landscape){ 
+        @content;
+        }
+      }
+        
+
+      @if $breakpoint==sm {
+@media only screen 
+    and (max-width: 768px) {
+        @content;
+        }
+      }
+    
+  @if $breakpoint==md {
+@media only screen 
+    and (min-width: 768px) {
+        @content;
+        }
+      }
+
+  @if $breakpoint==lg {
+@media only screen 
+    and (min-width: 1200px) {
+        @content;
+        }
+      }
+
+  @if $breakpoint==xl {
+@media only screen 
+    and (min-width: 1600px) {
+        @content;
+        }
+      }
+        
+  @if $breakpoint==xxl {
+@media only screen 
+    and (min-width: 1800px) {
+        @content;
+        }
+      }
+        
+    }
+
+
+
+
+/* Percentage values */
+
+$v100: 100%;
+$v95: 95%;
+$v90: 90%;
+$v85: 85%;
+$v80: 80%;
+$v75: 75%;
+$v70: 70%;
+$v65: 65%;
+$v60: 60%;
+$v55: 55%;
+$v50: 50%;
+$v45: 45%;
+$v40: 40%;
+$v35: 35%;
+$v30: 30%;
+$v25: 25%;
+$v20: 20%;
+$v15: 15%;
+$v10: 10%;
+$v5: 5%;
+$v0: 0;
+$auto: auto;
+$zeroauto: 0 auto;
+
+/* Pixel values */
+
+$px0: 0;
+$px5: 5px;
+$px10: 10px;
+$px15: 15px;
+$px20: 20px;
+$px25: 25px;
+$px30: 30px;
+$px35: 35px;
+$px40: 40px;
+$px45: 45px;
+$px50: 50px;
+$px55: 55px;
+$px60: 60px;
+$px65: 65px;
+$px70: 70px;
+$px75: 75px;
+$px80: 80px;
+$px85: 85px;
+$px90: 90px;
+$px95: 95px;
+$px100: 100px;
+
+/* Grid based width */
+
+$onehalf: 48%;
+$onethird: 30.66%;
+$twothirds: 65.33%;
+$onefourth: 22%;
+$threefourths: 74%;
+$onefifth: 16.8%;
+$twofifths: 37.6%;
+$threefifths: 58.4%;
+$fourfifths: 82.67%;
+$onesixth: 13.33%;
+$fivesixths: 82.67%;
+$gridmargin:  0 4% 0 0;
+$last: 0 0 0 0;
+
+
+/* Container values */
+
+$calcwidth: calc(100% - 120px);
+$calcpad: $px0 $px60;
+$perwidth: $v60;
+$perpad: $px0 $v5;
+
+$bigcalcwidth: calc(100% - 180px);
+$bigcalcpad: $px0 $px60;
+$bigperwidth: $v60;
+$bigperpad: $px0 $v10;
+
+
+@mixin container{
+    position: relative;
+    width: $perwidth;
+    width: $calcwidth;
+    padding: $perpad;
+    padding: $calcpad;
+    margin: $zeroauto;
+    max-width: 1600px;
+    min-width: 668px;
+    justify-content: center;
+    align-items: center;
+    z-index: 5;
+}
+
+@mixin bigcontainer{
+    width: $bigperwidth;
+    width: $bigcalcwidth;
+    padding: $bigperpad;
+    padding: $bigcalcpad;
+	position: relative;
+    margin: $zeroauto;
+    max-width: 2000px;
+    min-width: 668px;
+    justify-content: center;
+    align-items: center;
+    z-index: 5;
+
+}
+
+@mixin clear{
+    clear: both;
+    display: block;
+}
+
+
+@mixin two_columns{
+    width:$v100;
+    @include respond-to(md){
+        width: $onehalf;
+        margin-right: 4%;
+        float: left;
+        &:nth-child(2n+1){
+            clear:both;
+        }
+        &:nth-child(2n+2){
+            margin-right:0;
+        }        
+    }
+    @include respond-to(tablet){
+        width: $onehalf;
+        margin-right: 4%;
+        float: left;
+        &:nth-child(2n+1){
+            clear:both;
+        }
+        &:nth-child(2n+2){
+            margin-right:0;
+        }        
+    }
+    @include respond-to(mobile){
+        width: $v100;
+    }
+    @include respond-to(small){
+        width: $v100;
+    }
+}
+
+@mixin three_columns{
+    width:$v100;
+    @include respond-to(md){
+        width: $onethird;
+        margin-right: 4%;
+        float: left;
+        &:nth-child(3n+1){
+            clear:both;
+        }
+        &:nth-child(3n+3){
+            margin-right:0;
+        }
+    }
+    @include respond-to(tablet){
+        width: $onethird;
+        margin-right: 4%;
+        float: left;
+        &:nth-child(3n+1){
+            clear:both;
+        }
+        &:nth-child(3n+3){
+            margin-right:0;
+        }
+    }
+    @include respond-to(mobile){
+        width: $v100;
+    }
+    @include respond-to(small){
+        width: $v100;
+    }
+}
+
+@mixin four_columns{
+    width:$v100;
+    @include respond-to(md){
+        width: $onefourth;
+        margin-right: 4%;
+        float: left;
+        &:nth-child(4n+1){
+            clear:both;
+        }
+        &:nth-child(4n+4){
+            margin-right:0;
+        }
+    }
+    @include respond-to(tablet){
+        width: $onefourth;
+        margin-right: 4%;
+        float: left;
+        &:nth-child(4n+1){
+            clear:both;
+        }
+        &:nth-child(4n+4){
+            margin-right:0;
+        }
+    }
+    @include respond-to(mobile){
+        width: $v100;
+    }
+    @include respond-to(small){
+        width: $v100;
+    }
+}
+
+@mixin five_columns{
+    width:$v100;
+    @include respond-to(md){
+        width: $onefifth;
+        margin-right: 4%;
+        float: left;
+        &:nth-child(5n+1){
+            clear:both;
+        }
+        &:nth-child(5n+5){
+            margin-right:0;
+        }
+    }
+    @include respond-to(tablet){
+        width: $onefifth;
+        margin-right: 4%;
+        float: left;
+        &:nth-child(5n+1){
+            clear:both;
+        }
+        &:nth-child(5n+5){
+            margin-right:0;
+        }
+    }
+    @include respond-to(mobile){
+        width: $v100;
+    }
+    @include respond-to(small){
+        width: $v100;
+    }
+}
+
+@mixin six_columns{
+    width:$v100;
+    @include respond-to(md){
+        width: $onesixth;
+        margin-right: 4%;
+        float: left;
+        &:nth-child(6n+1){
+            clear:both;
+        }
+        &:nth-child(6n+6){
+            margin-right:0;
+        }
+    }
+    @include respond-to(tablet){
+        width: $onesixth;
+        margin-right: 4%;
+        float: left;
+        &:nth-child(6n+1){
+            clear:both;
+        }
+        &:nth-child(6n+6){
+            margin-right:0;
+        }
+    }
+    @include respond-to(mobile){
+        width: $v100;
+    }
+    @include respond-to(small){
+        width: $v100;
+    }
+}
+
+
+
+@mixin transition {
+    -webkit-transition: (.5s);
+    -moz-transition: (.5s);
+    -ms-transition: (.5s);
+    -o-transition: (.5s);
+    transition: (.5s);
+}
+
+@mixin shorttransition {
+    -webkit-transition: (.2s);
+    -moz-transition: (.2s);
+    -ms-transition: (.2s);
+    -o-transition: (.2s);
+    transition: (.2s);
+}
+
+@mixin longtransition {
+    -webkit-transition: (3s);
+    -moz-transition: (3s);
+    -ms-transition: (3s);
+    -o-transition: (3s);
+    transition: (3s);
+}
+
+
+@mixin rotate($degrees) {
+    -webkit-transform: rotate($degrees);
+    -moz-transform: rotate($degrees);
+    -ms-transform: rotate($degrees);
+    -o-transform: rotate($degrees);
+    transform: rotate($degrees);
+}
+
+@mixin scale($ratio) {
+  -webkit-transform: scale($ratio);
+     -moz-transform: scale($ratio);
+      -ms-transform: scale($ratio);
+       -o-transform: scale($ratio);
+          transform: scale($ratio);
+}
+
+@mixin border_radius_small {
+    border-radius: 8px;
+}
+
+@mixin border_radius {
+    border-radius: 25px;
+}
+@mixin box_shadow {
+    box-shadow: 0px 7px 14px 0px rgba(0, 0, 0, 0.05);
+}
+
+@mixin bg_cover{
+    background-position: 50% 50%;
+    background-size: cover;
+    background-repeat: no-repeat;        
+}
+
+@mixin letterspace{
+    letter-spacing: 5px;
+    color: $white;
+    text-transform: uppercase;
+}
+
+@mixin buttonsimple {
+    // @include s;
+    font-weight: 600;
+    color: $blue;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    &::after {
+        content: '';
+        background-image: url('assets/images/svg/arrow-tab-blue.svg');
+        background-size: cover;
+        position: relative;
+        display: block;
+        width: 10px;
+        height: 10px;
+    }
+}
+
+@mixin buttonmytrivblue {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    color: $white;
+    padding: 4px 14px;
+    border: solid 2px $blue;
+    background-color: $blue;
+    overflow: hidden;
+    opacity: 1;
+    color: #FFF;
+    height: fit-content;
+    width: fit-content;
+    @include border_radius;
+    @include shorttransition;
+    &:before{
+        content: "";
+        background-image: url('assets/images/png/my-trivallis-with-white.png');
+        background-size: cover;
+        background-position: center;
+        width: 20px;
+        height: 20px;
+        position: relative;
+        @include shorttransition;
+    }
+    &:hover {
+        opacity: 0.7;
+        @include shorttransition;
+    }
+}
+
+@mixin buttonmytrivwhite {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    color: $white;
+    padding: 4px 14px;
+    border: solid 2px $white;
+    background-color: $white;
+    overflow: hidden;
+    opacity: 1;
+    color: $blue;
+    height: fit-content;
+    width: fit-content;
+    @include border_radius;
+    @include shorttransition;
+    &:before{
+        content: "";
+        background-image: url('assets/images/png/my-trivallis.png');
+        background-size: cover;
+        background-position: center;
+        width: 20px;
+        height: 20px;
+        position: relative;
+        @include shorttransition;
+    }
+    &:hover {
+        opacity: 0.7;
+        @include shorttransition;
+    }
+}
+
+@mixin buttonblue {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    color: $white;
+    padding: 4px 14px;
+    border: solid 2px $blue;
+    background-color: $blue;
+    overflow: hidden;
+    opacity: 1;
+    color: $white;
+    width: fit-content;
+    @include border_radius;
+    @include shorttransition;
+    &:hover {
+        opacity: 0.7;
+        @include shorttransition;
+    }
+}
+
+@mixin buttonlightblue {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    color: $navy;
+    text-decoration: none;
+    padding: 4px 14px;
+    border: 2px $lightblue solid;
+    border-radius: 25px;
+    background-color: $lightblue;
+    overflow: hidden;
+    @include transition;
+    @include border_radius;
+    &:hover {
+        opacity: 0.7;
+        @include shorttransition;
+    }
+}
+
+@mixin buttonpurple {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    color: $white;
+    text-decoration: none;
+    padding: 4px 14px;
+    border: 2px $purple solid;
+    border-radius: 25px;
+    background-color: $purple;
+    overflow: hidden;
+    width: fit-content;
+    @include transition;
+    @include border_radius;
+    &:hover {
+        opacity: 0.7;
+        @include shorttransition;
+    }
+}
+
+@mixin buttonmagenta {
+    position: relative;
+    display: inline-block;
+    align-items: center;
+    color: $white;
+    text-decoration: none;
+    padding: 4px 14px;
+    border: 2px $magenta solid;
+    border-radius: 25px;
+    background-color: $magenta;
+    overflow: hidden;
+    width: fit-content;
+    @include transition;
+    @include border_radius;
+    &:hover {
+        opacity: 0.7;
+        @include shorttransition;
+    }
+}
+
+@mixin tag {
+	font-size: 14px;
+    background-color: $white;
+	color: $grey !important;
+	border-radius: 20px;
+    border: solid 1px #D8E9F5;
+    padding: 1px 14px;
+    width: fit-content;
+    height: fit-content;
+    margin-bottom: 0px;
+    padding: 0px 14px;
+    margin-bottom: 12px;
+}
+
+@mixin subtitle {
+    font-size: 14px;
+    font-weight: bold;
+    // margin-bottom: 10px;
+}
+
+@mixin bg_white {
+    background-color: $white;
+    h2, h3, h4, h5 {
+        color: $navy;
+    }
+    p {
+        color: $offblack;
+    }
+    .btn {
+        @include buttonblue;
+    }
+}
+.bg_blue {
+    @include bg_white;
+}
+
+// bg colours 
+@mixin bg_blue {
+    background-color: $sp_blue_bg;
+    h2, h3, h5 {
+        color: $blue;
+    }
+    p {
+        color: $offblack;
+    }
+}
+.bg_blue {
+    @include bg_blue;
+}
+
+
+@mixin bg_skyblue {
+    background-color: $skyblue;
+    h2, h3, h4 {
+        color: $darkgreen;
+    }
+    p {
+        color: $offblack;
+    }
+}
+.bg_skyblue {
+    @include bg_skyblue;
+}
+
+@mixin bg_pink {
+    background-color: $sp_pink_bg;
+    h2 {
+        color: $darkmagenta;
+    }
+    h3, h4 {
+        color: $purple;
+    }
+    p {
+        color: $offblack;
+    }
+}
+.bg_pink {
+    @include bg_pink;
+}
+
+@mixin bg_green {
+    background-color: #D6EDEC;
+    h2, h3, h5 {
+        color: $darkgreen;
+    }
+    p {
+        color: $offblack;
+    }
+}
+.bg_green {
+    @include bg_green;
+}
+
+@mixin bg_yellow {
+    background-color: #FCE3AD;
+    h2, h3, h5 {
+        color: $blue;
+    }
+    p {
+        color: $offblack;
+    }
+}
+.bg_yellow {
+    @include bg_yellow;
+}
+
+// 
+// post templates
+// 
+
+// post type used for the mobile view.
+@mixin post_template_portrait {
+    @include box_shadow;
+    @include border_radius_small;
+    @include bg_blue;
+    position: relative;
+    overflow: hidden;
+    @include respond-to('sm') {
+        max-height: 540px;
+    }
+    .image_wrap {
+        // height: 50%;
+        position: relative;
+        .mask_desktop, .mask_white_small {
+            display: none;
+        }
+        .mask_mobile {
+            position: absolute;
+            left: -1px;
+            bottom: -1px;
+            width: 101%;
+        }
+        img {
+            max-height: 300px;
+            object-fit: cover;
+            object-position: top;
+            // border-radius: 0 0 8% 30% / 5em;
+            // border-bottom-left-radius: 158% 101px;
+            // border-bottom-right-radius: 170% 90%;
+        }
+    }
+    .news_box {
+        padding: 0px 14px 14px 14px;
+        height: 300px;
+        .text_wrap {
+            height: 100%;
+            @include respond-to('lg') {
+                display: block;
+            }
+            .post_title {
+                @include h-three;
+            }
+            .btn_blue {
+                margin-top: 20px;
+            }
+        }
+    }
+}
+
+// the smaller post template, where the image and text sit side by side
+@mixin post_template_landscape {
+    @include border_radius_small;
+    @include bg_blue;
+    @include box-shadow;
+    position: relative;
+    overflow: hidden;
+    height: unset; // reset this for large viewports
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    position: relative;
+    background-color: $white;
+    .image_wrap {
+        position: relative;
+        .mask_desktop {
+            display: none;
+        }
+        .mask_mobile {
+            display: none;
+        }
+        .mask_white_small {
+            display: block;
+            position: absolute;
+            height: 101%;
+            right: -4px;
+            top: 0;
+        }
+        img {
+            max-height: 300px;
+            object-fit: cover;
+            object-position: top;
+            aspect-ratio: 16 / 9;
+            border-radius: 0px;
+            max-height: unset;
+        }
+    }
+
+    .news_box {
+        height: unset; // reset this for large viewports
+        display: flex;
+        align-items: start;
+        padding: 14px;
+        @include respond-to('sm') {
+            padding: 8px;
+        }
+        position: relative;
+        &:after {
+            content: '';
+            background-image: url(assets/images/svg/arrow-tab-blue.svg);
+            background-size: cover;
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            width: 18px;
+            height: 18px;
+            @include respond-to('sm') {
+                top: 14px;
+                right: 10px;
+                width: 14px;
+                height: 14px;
+            }
+        }
+        .text_wrap {
+            .tag {
+                margin-bottom: 10px;
+                @include respond-to('sm') {
+                    font-size: 12px;
+                    max-width: 80%;
+                    margin-top: 5px;
+                    margin-right: 6px;
+                }
+            }
+            .post_title {
+                @include h-four;
+                line-height: 1.3 !important;
+                font-weight: 700;
+                margin-top: 10px;
+                color: $blue;
+                margin-bottom: 0px;
+            }
+            .post_date {
+                display: none;
+            }
+            .the_excerpt {
+                display: none;
+            }
+        }
+        .btn_blue {
+            display: none;
+        }
+    }
+}
+
+// common signpost styles
+@mixin signpost {
+    @include box_shadow;
+    @include border_radius_small;
+    @include transition;
+    padding: 14px 14px 10px 60px;
+    position: relative;
+    cursor: pointer;
+    h3 {
+        margin-bottom: 10px;
+    }
+    p {
+        margin-bottom: 0px;
+    }
+    @media(min-width: 800px) {
+        padding: 56px 20px 36px 80px;
+        max-width: unset;
+        max-height: 281px;
+    }
+    @include respond-to('lg') {
+        padding: 36px 90px;
+    }
+    &:before {
+        content: '';
+        background-size: contain;
+        background-repeat: no-repeat;
+        height: 75%;
+        width: 48px;
+        position: absolute;
+        left: 0;
+        top: 7%;
+        @include respond-to('md') {
+            height: 75%;
+            top: 13%;
+            width: 80px;
+        }
+        
+    }
+    &:after {
+        content: '';
+        background-size: cover;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 16px;
+        height: 16px;
+        @include respond-to('md') {
+            top: 20px;
+            right: 20px;
+            width: 18px;
+            height: 18px;
+        }
+        @include respond-to('lg') {
+            top: 40px;
+            right: 30px;
+        }
+    }
+    &:hover {
+        box-shadow: none;
+        @include transition;
+    }
+}
+// .signpost {
+//     @include signpost;
+// }
+
+.sp_repair {
+    @include signpost;
+    @include bg_blue;
+    h2, h3, h4 {
+        color: $navy;
+    }
+    &:hover {
+        background-color: $sp_blue_bg_hover;
+        @include transition;
+    }
+    &:before {
+        background-image: url('assets/images/svg/repair-icon.svg');
+    }
+    &:after {
+        background-image: url('assets/images/svg/arrow-tab-navy.svg');
+    }
+}
+
+//
+.sp_find_property {
+    @include signpost;
+    @include bg_pink;
+    // overwrite bg+pink styles for this signpost
+    h2, h3, h4 {
+        color: $darkmagenta;
+    }
+    &:hover {
+        background-color: $sp_pink_bg_hover;
+        @include transition;
+    }
+    &:before {
+        background-image: url('assets/images/svg/findproperty-icon.svg');
+    }
+    &:after {
+        background-image: url('assets/images/svg/arrow-tab-darkmagenta.svg');
+    }
+}
+
+.sp_pay_rent {
+    @include signpost;
+    @include bg_skyblue;
+    &:hover {
+        background-color: $skyblue_hover;
+        @include transition;
+    }
+    &:before {
+        background-image: url('assets/images/svg/piggybank-icon.svg');
+    }
+    &:after {
+        background-image: url('assets/images/svg/arrow-tab-darkgreen.svg');
+    }
+}
+
+.sp_comm_properties {
+    @include signpost;
+    @include bg_pink;
+    // overwrite bg+pink styles for this signpost
+    h2, h3, h4 {
+        color: $darkmagenta;
+    }
+    &:hover {
+        background-color: $sp_pink_bg_hover;
+        @include transition;
+    }
+    &:before {
+        background-image: url('assets/images/svg/key-icon.svg');
+    }
+    &:after {
+        background-image: url('assets/images/svg/arrow-tab-darkmagenta.svg');
+    }
+}
+
+.sp_contact_us {
+    @include signpost;
+    @include bg_pink;
+    // overwrite bg+pink styles for this signpost
+    h2, h3, h4 {
+        color: $darkmagenta;
+    }
+    &:hover {
+        background-color: $sp_pink_bg_hover;
+        @include transition;
+    }
+    &:before {
+        background-image: url('assets/images/svg/contact-us-icon.svg');
+    }
+    &:after {
+        background-image: url('assets/images/svg/arrow-tab-darkmagenta.svg');
+    }
+}
+.sp_advice_guidance {
+    @include signpost;
+    @include bg_skyblue;
+    &:hover {
+        background-color: $skyblue_hover;
+        @include transition;
+    }
+    &:before {
+        background-image: url('assets/images/svg/advice-guidance-icon.svg');
+    }
+    &:after {
+        background-image: url('assets/images/svg/arrow-tab-darkgreen.svg');
+    }
+}
+
+.sp_my_trivallis {
+    @include signpost;
+    @include bg_skyblue;
+    &:hover {
+        background-color: $skyblue_hover;
+        @include transition;
+    }
+    &:before {
+        background-image: url('assets/images/svg/key-icon.svg');
+    }
+    &:after {
+        background-image: url('assets/images/svg/arrow-tab-darkgreen.svg');
+    }
+}
+
+.sp_tenancy_agreement, .sp_tenant_services {
+    @include signpost;
+    @include bg_blue;
+    h2, h3, h4 {
+        color: $navy;
+    }
+    &:hover {
+        background-color: $sp_blue_bg_hover;
+        @include transition;
+    }
+    &:before {
+        background-image: url('assets/images/svg/tenant-services-icon.svg');
+    }
+    &:after {
+        background-image: url('assets/images/svg/arrow-tab-navy.svg');
+    }
+}
+
+.sp_get_involved {
+    @include signpost;
+    @include bg_blue;
+    h2, h3, h4 {
+        color: $navy;
+    }
+    &:hover {
+        background-color: $sp_blue_bg_hover;
+        @include transition;
+    }
+    &:before {
+        background-image: url('assets/images/svg/get-involved-icon.svg');
+    }
+    &:after {
+        background-image: url('assets/images/svg/arrow-tab-navy.svg');
+    }
+}
+
+.sp_news {
+    @include signpost;
+    @include bg_pink;
+    // overwrite bg+pink styles for this signpost
+    h2, h3, h4 {
+        color: $darkmagenta;
+    }
+    &:hover {
+        background-color: $sp_pink_bg_hover;
+        @include transition;
+    }
+    &:before {
+        background-image: url('assets/images/svg/news-icon.svg');
+    }
+    &:after {
+        background-image: url('assets/images/svg/arrow-tab-darkmagenta.svg');
+    }
+}
+
+
+@mixin link_list_header {
+    display: flex;
+    flex-wrap: wrap;
+    // row-gap: 10px;
+    column-gap: 10px;
+    align-items: end;
+    padding-bottom: 10px;
+    border-bottom: solid 1px $lightgrey;
+    img {
+        max-width: 40px;
+    }
+    h3 {
+        margin-bottom: 0px;
+    }
+    p {
+        flex-basis: 100%;
+        margin-bottom: 0px;
+    }
+    @include respond-to('md') {
+        display: grid;
+        grid-template-columns: 100px auto;
+        column-gap: 60px;
+        padding-bottom: 40px;
+        img {
+            max-width: 100px;
+            grid-row: 1 / span 2;
+        }
+    }
+}
+
+@mixin link_list {
+    display: grid;
+    gap: 14px;
+    padding-top: 20px;
+    li {
+        list-style-type: none;
+    }
+    @include respond-to('md') {
+        display: flex;
+        flex-wrap: wrap;
+        row-gap: 40px;
+        column-gap: 70px;
+        padding: 30px 30px 0px 0px;    
+    }
+}
+
+
+@mixin textboxpad{
+    width:90%;
+    padding: 5vh 0;
+    margin: 0 auto;
+    @include respond-to('md'){
+        padding: 10vh 0;
+        width:60%;
+        margin: 0 auto;
+    }
+}
+
+@mixin textboxsmallpad{
+    width:90%;
+    padding: 0vh 0;
+    margin: 0 auto;
+    @include respond-to('md'){
+        padding: 0vh 0;
+        width:60%;
+        margin: 0 auto;
+    }
+}
+
+@mixin fieldsolid{
+    background-color: $white;
+    border: 2px solid $white;
+    width:95%;
+    padding: 5px 2.5%;
+    margin-bottom: 15px;
+    color: $black;
+    border-radius: 5px;
+}
+
+@mixin fieldoutline{
+    background-color: $orange;
+    border: 2px solid $white;
+    width:95%;
+    padding: 5px 2.5%;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    color: $white;
+}
+
+@mixin slidebg{
+    width: calc(100% - 60px);
+    backdrop-filter: blur(5px);
+    background-color: $whitealpha;
+    padding: $px30;
+    margin: 0%;
+    text-align: center;
+    @include border-radius;
+    @include respond-to('md'){
+        text-align: left;
+        padding: $px30 $px50;
+        width: 100%;
+        margin: 0;
+        position: absolute;
+        z-index: 200;
+        width:50%;
+        &.overleft{
+            left:0;
+        }
+        &.overright{
+            right:0;
+        }
+        &.overcenter{
+            left:25%;
+        }
+    }
+    a.button{
+    }
+}

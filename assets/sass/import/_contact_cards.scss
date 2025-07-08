@@ -1,0 +1,62 @@
+.section_contact_cards {
+    .grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        align-items: end;
+        justify-content: space-evenly;
+        @include respond-to('md') {
+            gap: 0px;
+        }
+        .grid_cell {
+            position: relative;
+            width: 100%;
+            @include respond-to('md') {
+                width: 49%;
+            }
+            .image_wrap {
+                width: 95%;
+                margin-left: auto;
+                img {
+                    @include border_radius_small;
+                    max-height: 460px;
+                    object-fit: cover
+                }
+            }
+            .text_wrap {
+                @include border_radius_small;
+                @include box_shadow;
+                background-color: $white;
+                padding: 20px;
+                width: 88%;
+                top: -30px; 
+                z-index: 1;
+                position: relative;
+                height: 160px;
+                @include respond-to('sm') {
+                    width: 82%;
+                    height: unset;
+                }
+                h3 {
+                    color: $blue;
+                    margin-bottom: 20px;
+                }
+                p {
+                    margin-bottom: 10px;
+                }
+                .wrap {
+                    display: flex;
+                    flex-wrap: wrap;
+                    a {
+                        font-weight: 600;
+                        color: $blue;
+                        text-decoration: underline;
+                        &:hover {
+                            text-decoration: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
